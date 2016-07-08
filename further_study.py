@@ -24,8 +24,10 @@ def custom_len(input_list):
     8
 
     """
-
-    return 0
+    x = 0
+    for length in input_list:
+        x += 1
+    return x
 
 
 # For the next four exercises, you'll need to be clever and think about ways
@@ -50,8 +52,9 @@ def custom_append(input_list, value):
     True
 
     """
+    input_list[-1:] = [input_list[-1], value]
 
-    pass
+    return None
 
 
 def custom_extend(input_list, second_list):
@@ -67,8 +70,9 @@ def custom_extend(input_list, second_list):
     True
 
     """
-
-    pass
+    for item in second_list:
+        input_list[-1:] = [input_list[-1], item]
+    return None
 
 
 def custom_insert(input_list, index, value):
@@ -84,8 +88,10 @@ def custom_insert(input_list, index, value):
     True
 
     """
+    old_value = input_list[index]
+    input_list[index:index + 1] = [value, old_value]
 
-    pass
+    return None
 
 
 def custom_remove(input_list, value):
@@ -101,8 +107,13 @@ def custom_remove(input_list, value):
     True
 
     """
-
-    pass
+    x = 0
+    for item in input_list:
+        if item == value:
+            del input_list[x]
+            break 
+        x += 1
+    return None
 
 
 def custom_pop(input_list):
@@ -117,7 +128,9 @@ def custom_pop(input_list):
 
     """
 
-    return None
+    last_item = input_list[-1]
+    del input_list[-1]
+    return last_item
 
 
 def custom_index(input_list, value):
@@ -131,8 +144,12 @@ def custom_index(input_list, value):
     1
 
     """
-
-    return 0
+    x = 0
+    for item in input_list:
+        if item == value:
+            break 
+        x += 1
+    return x
 
 
 def custom_count(input_list, value):
@@ -147,7 +164,13 @@ def custom_count(input_list, value):
 
     """
 
-    return 0
+    x = 0
+
+    for item in input_list:
+        if item == value:
+            x += 1
+
+    return x
 
 
 def custom_reverse(input_list):
@@ -164,7 +187,19 @@ def custom_reverse(input_list):
 
     """
 
-    pass
+    reversed_list = [input_list[-1]]
+    del input_list[-1]
+
+    for item in input_list:
+        
+        last_item = input_list[-1]                # pop
+        del input_list[-1]        
+
+        reversed_list[-1:] = [reversed_list[-1], last_item] # append
+
+    input_list = reversed_list
+
+    return None
 
 
 def custom_contains(input_list, value):
